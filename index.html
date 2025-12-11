@@ -6,6 +6,7 @@
     <title>工业半轴区块链溯源展示</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* 重置和基础样式 */
         * {
             margin: 0;
             padding: 0;
@@ -22,6 +23,7 @@
             -webkit-text-size-adjust: 100%;
         }
         
+        /* 容器 */
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -32,6 +34,7 @@
             padding: 20px;
         }
         
+        /* 头部 */
         header {
             text-align: center;
             margin-bottom: 30px;
@@ -70,6 +73,7 @@
             padding: 0 10px;
         }
         
+        /* 产品信息 */
         .product-info {
             background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
             padding: 20px;
@@ -108,6 +112,7 @@
             word-break: break-all;
         }
         
+        /* 时间线 */
         .process-timeline {
             position: relative;
             padding: 15px 0;
@@ -124,6 +129,7 @@
             border-radius: 2px;
         }
         
+        /* 步骤 */
         .process-step {
             display: block;
             margin-bottom: 40px;
@@ -134,7 +140,6 @@
         .step-icon {
             width: 60px;
             height: 60px;
-            background: #3498db;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -226,13 +231,15 @@
             word-break: break-word;
         }
         
+        /* 图片区域 */
         .step-image {
             width: 100%;
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-            height: 180px;
+            height: 200px;
             position: relative;
+            background: #f8f9fa;
         }
         
         .step-image img {
@@ -254,6 +261,7 @@
             text-align: center;
         }
         
+        /* 区块链信息 */
         .blockchain-info {
             background: linear-gradient(135deg, #f8f9fa 0%, #e8f6f3 100%);
             padding: 15px;
@@ -308,6 +316,7 @@
         .step-4 .step-icon { background: #9b59b6; }
         .step-5 .step-icon { background: #2ecc71; }
         
+        /* 页脚 */
         footer {
             text-align: center;
             margin-top: 40px;
@@ -411,7 +420,7 @@
             
             .step-image {
                 width: 50%;
-                height: 200px;
+                height: 220px;
             }
             
             .detail-row {
@@ -438,6 +447,20 @@
         
         .step-content:active {
             transform: scale(0.98);
+        }
+        
+        /* 图片加载状态 */
+        .step-image.loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f0f0f0;
+        }
+        
+        .step-image.loading::before {
+            content: '图片加载中...';
+            color: #999;
+            font-size: 0.9rem;
         }
     </style>
 </head>
@@ -492,7 +515,9 @@
                         </div>
                         
                         <div class="step-image">
-                            <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&q=80&auto=format&fit=crop" alt="原材料采购与检验">
+                            <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&q=80&auto=format&fit=crop" 
+                                 alt="原材料采购与检验" 
+                                 loading="lazy">
                             <div class="image-overlay">鞍钢优质合金钢原料仓库</div>
                         </div>
                     </div>
@@ -548,7 +573,9 @@
                         </div>
                         
                         <div class="step-image">
-                            <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&q=80&auto=format&fit=crop" alt="锻造成型工艺">
+                            <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&q=80&auto=format&fit=crop" 
+                                 alt="锻造成型工艺" 
+                                 loading="lazy">
                             <div class="image-overlay">3000T液压锻压机正在进行半轴锻造</div>
                         </div>
                     </div>
@@ -604,7 +631,9 @@
                         </div>
                         
                         <div class="step-image">
-                            <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&q=80&auto=format&fit=crop" alt="精密机加工">
+                            <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&q=80&auto=format&fit=crop" 
+                                 alt="精密机加工" 
+                                 loading="lazy">
                             <div class="image-overlay">五轴加工中心进行半轴精密加工</div>
                         </div>
                     </div>
@@ -660,7 +689,9 @@
                         </div>
                         
                         <div class="step-image">
-                            <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&q=80&auto=format&fit=crop" alt="热处理强化">
+                            <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&q=80&auto=format&fit=crop" 
+                                 alt="热处理强化" 
+                                 loading="lazy">
                             <div class="image-overlay">热处理车间淬火工艺现场</div>
                         </div>
                     </div>
@@ -716,7 +747,9 @@
                         </div>
                         
                         <div class="step-image">
-                            <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&q=80&auto=format&fit=crop" alt="成品检验与出库">
+                            <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&q=80&auto=format&fit=crop" 
+                                 alt="成品检验与出库" 
+                                 loading="lazy">
                             <div class="image-overlay">成品半轴检验合格准备发货</div>
                         </div>
                     </div>
@@ -751,41 +784,39 @@
     </div>
     
     <script>
-        // 添加简单的交互效果
+        // 页面加载完成后的初始化
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('工业半轴溯源页面加载完成 - 优化版');
+            console.log('工业半轴区块链溯源页面加载完成');
             
-            // 添加点击反馈
+            // 图片懒加载处理
+            const images = document.querySelectorAll('.step-image img');
+            images.forEach(img => {
+                // 确保图片加载失败时有备用方案
+                img.onerror = function() {
+                    this.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="200" viewBox="0 0 400 200"><rect width="400" height="200" fill="%23f0f0f0"/><text x="200" y="100" text-anchor="middle" fill="%23999" font-family="Arial" font-size="16">图片加载中</text></svg>';
+                    this.alt = '图片加载失败，请检查网络连接';
+                };
+                
+                // 图片加载成功
+                img.onload = function() {
+                    this.parentElement.classList.remove('loading');
+                };
+            });
+            
+            // 添加点击交互效果
             const stepContents = document.querySelectorAll('.step-content');
             stepContents.forEach(content => {
                 content.addEventListener('click', function() {
-                    this.style.boxShadow = '0 8px 25px rgba(0, 0, 0, 0.15)';
+                    this.style.transform = 'translateY(-2px)';
+                    this.style.boxShadow = '0 8px 25px rgba(0, 0, 0, 0.12)';
                     setTimeout(() => {
+                        this.style.transform = '';
                         this.style.boxShadow = '';
                     }, 200);
                 });
             });
             
-            // 自动调整图片大小以适应屏幕
-            function adjustImages() {
-                const images = document.querySelectorAll('.step-image img');
-                const screenWidth = window.innerWidth;
-                images.forEach(img => {
-                    if (screenWidth < 768) {
-                        img.style.objectFit = 'cover';
-                        img.style.height = '180px';
-                    } else {
-                        img.style.objectFit = 'cover';
-                        img.style.height = '200px';
-                    }
-                });
-            }
-            
-            // 初始调整和窗口大小变化时调整
-            adjustImages();
-            window.addEventListener('resize', adjustImages);
-            
-            // 添加滚动动画效果
+            // 添加滚动动画
             const observerOptions = {
                 threshold: 0.1,
                 rootMargin: '0px 0px -50px 0px'
@@ -796,16 +827,40 @@
                     if (entry.isIntersecting) {
                         entry.target.style.opacity = '1';
                         entry.target.style.transform = 'translateY(0)';
+                        observer.unobserve(entry.target);
                     }
                 });
             }, observerOptions);
             
-            // 观察所有步骤
+            // 为每个步骤添加观察
             document.querySelectorAll('.process-step').forEach(step => {
                 step.style.opacity = '0';
                 step.style.transform = 'translateY(20px)';
-                step.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                step.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
                 observer.observe(step);
+            });
+            
+            // 移动端优化：防止双击缩放
+            let lastTouchEnd = 0;
+            document.addEventListener('touchend', function(event) {
+                const now = Date.now();
+                if (now - lastTouchEnd <= 300) {
+                    event.preventDefault();
+                }
+                lastTouchEnd = now;
+            }, false);
+        });
+        
+        // 窗口大小调整时的优化
+        window.addEventListener('resize', function() {
+            // 重新计算图片高度
+            const images = document.querySelectorAll('.step-image');
+            images.forEach(img => {
+                if (window.innerWidth < 768) {
+                    img.style.height = '180px';
+                } else {
+                    img.style.height = '220px';
+                }
             });
         });
     </script>
