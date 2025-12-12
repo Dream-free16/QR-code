@@ -117,7 +117,6 @@
             padding: 15px 0;
         }
         
-        /* 修复手机端蓝色线条对齐问题 */
         .process-timeline::before {
             content: '';
             position: absolute;
@@ -350,57 +349,6 @@
             font-size: 0.9rem;
         }
         
-        /* 手机端优化 - 修复蓝色线条对齐问题 */
-        @media (max-width: 767px) {
-            .process-timeline::before {
-                left: 25px; /* 调整线条位置，使其与图标中心对齐 */
-            }
-            
-            .process-step {
-                margin-left: 50px; /* 调整步骤内容间距 */
-            }
-            
-            .step-icon {
-                width: 50px;
-                height: 50px;
-                font-size: 1.2rem;
-                left: -62px; /* 调整图标位置，使其与线条对齐 */
-                top: 15px;
-            }
-            
-            .container {
-                padding: 15px;
-                border-radius: 8px;
-            }
-            
-            h1 {
-                font-size: 1.5rem;
-            }
-            
-            .product-info {
-                padding: 15px;
-            }
-            
-            .step-content {
-                padding: 15px;
-            }
-            
-            .step-title {
-                font-size: 1.1rem;
-            }
-            
-            .step-image {
-                height: 150px;
-            }
-            
-            /* 确保线条完全覆盖所有步骤 */
-            .process-timeline::before {
-                height: calc(100% - 20px);
-                top: 10px;
-                bottom: 10px;
-            }
-        }
-        
         /* 桌面端适配 */
         @media (min-width: 768px) {
             .container {
@@ -450,7 +398,6 @@
                 width: 70px;
                 height: 70px;
                 font-size: 1.8rem;
-                left: 50% !important; /* 覆盖移动端设置 */
             }
             
             .step-content {
@@ -495,6 +442,49 @@
             
             .detail-label {
                 min-width: 120px;
+            }
+        }
+        
+        /* 手机端优化 */
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+                border-radius: 8px;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            .product-info {
+                padding: 15px;
+            }
+            
+            .step-content {
+                padding: 15px;
+            }
+            
+            .step-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+                left: -65px;
+            }
+            
+            .process-timeline::before {
+                left: 25px;
+            }
+            
+            .process-step {
+                margin-left: 50px;
+            }
+            
+            .step-title {
+                font-size: 1.1rem;
+            }
+            
+            .step-image {
+                height: 150px;
             }
         }
         
@@ -544,17 +534,15 @@
 <body>
     <div class="container">
         <header>
-            <h1><i class="fas fa-industry"></i> 工业半轴区块链溯源流程</h1>
+            <h1><i class="fas fa-industry"></i> 工业半轴区块链溯源全流程</h1>
             <p class="subtitle">全程可视化追踪，基于区块链技术的不可篡改溯源体系</p>
         </header>
         
         <div class="product-info">
             <div class="product-details">
                 <h2>工业半轴 - 全程溯源</h2>
-                <!-- 简化产品信息，只保留产品型号 -->
-                <p>产品型号：AX-2025-085</p>
             </div>
-            <div class="product-id">溯源编号：TRACE-20230815-085-BC</div>
+            <div class="product-id">溯源编号：TRACE-20250815-BC</div>
         </div>
         
         <div class="process-timeline">
@@ -572,7 +560,7 @@
                         <div class="step-details">
                             <div class="detail-row">
                                 <div class="detail-label">供应商：</div>
-                                <div class="detail-value">鞍山钢铁股份有限公司</div>
+                                <div class="detail-value">某某钢材股份有限公司</div>
                             </div>
                             <div class="detail-row">
                                 <div class="detail-label">材料型号：</div>
@@ -594,7 +582,7 @@
                         
                         <div class="step-image">
                             <img src="Y.webp" alt="原材料采购与检验" loading="lazy">
-                            <div class="image-overlay">鞍钢优质合金钢原料仓库</div>
+                            <div class="image-overlay">优质合金钢材原料仓库</div>
                         </div>
                     </div>
                     
@@ -700,7 +688,7 @@
                             </div>
                             <div class="detail-row">
                                 <div class="detail-label">质检结果：</div>
-                                <div class="detail-value">合格，关键尺寸全部达标</div>
+                                <div class="detail-value">合格，关键尺寸全部正常</div>
                             </div>
                         </div>
                         
@@ -796,7 +784,7 @@
                         <div class="step-details">
                             <div class="detail-row">
                                 <div class="detail-label">终端客户：</div>
-                                <div class="detail-value">重型机械有限公司</div>
+                                <div class="detail-value">某某机械有限公司</div>
                             </div>
                             <div class="detail-row">
                                 <div class="detail-label">最终检验：</div>
@@ -807,12 +795,12 @@
                                 <div class="detail-value">防锈油+防水膜+木箱包装</div>
                             </div>
                             <div class="detail-row">
-                                <div class="detail-label">物流单号：</div>
+                                <div class="detail-label">出库单号：</div>
                                 <div class="detail-value">SF202308300852</div>
                             </div>
                             <div class="detail-row">
-                                <div class="detail-label">交付状态：</div>
-                                <div class="detail-value">已签收，客户验收合格</div>
+                                <div class="detail-label">检验状态：</div>
+                                <div class="detail-value">正常</div>
                             </div>
                         </div>
                         
@@ -854,7 +842,7 @@
     <script>
         // 添加简单的交互效果
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('工业半轴溯源页面加载完成 - 手机端优化版');
+            console.log('工业半轴溯源页面加载完成 - GitHub优化版');
             
             // 添加点击反馈
             const stepContents = document.querySelectorAll('.step-content');
