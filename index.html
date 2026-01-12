@@ -241,6 +241,9 @@
             height: 180px;
             position: relative;
             background-color: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .step-image img {
@@ -258,6 +261,7 @@
             width: 100%;
             height: 100%;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
@@ -265,28 +269,12 @@
             animation: shimmer 1.5s infinite;
             color: #666;
             font-size: 0.9rem;
+            z-index: 1;
         }
         
         @keyframes shimmer {
             0% { background-position: -200% 0; }
             100% { background-position: 200% 0; }
-        }
-        
-        .image-error {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #f8f9fa;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: #e74c3c;
-            font-size: 0.9rem;
-            text-align: center;
-            padding: 20px;
         }
         
         .image-overlay {
@@ -678,17 +666,17 @@
                             </div>
                         </div>
                         
-                        <div class="step-image" data-image-id="step1">
-                            <div class="image-placeholder">正在加载图片...</div>
-                            <!-- 使用picture标签提供WebP和JPG两种格式 -->
-                            <picture>
-                                <!-- 首先尝试WebP -->
-                                <source srcset="Y.webp" type="image/webp">
-                                <!-- 如果WebP失败，使用JPG -->
-                                <source srcset="Y.jpg" type="image/jpeg">
-                                <!-- 最终的回退 -->
-                                <img src="Y.jpg" alt="原材料采购与检验" loading="lazy">
-                            </picture>
+                        <div class="step-image" data-image-id="1">
+                            <div class="image-placeholder" id="placeholder-1">
+                                <i class="fas fa-spinner fa-spin"></i>
+                                <span>正在加载图片...</span>
+                            </div>
+                            <!-- 使用数据属性存储多个备用URL -->
+                            <img data-src="Y.webp" 
+                                 data-fallback1="https://placehold.co/600x400/f0f0f0/666?text=原材料采购" 
+                                 data-fallback2="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjBmMGYwIi8+PHRleHQgeD0iNTAwIiB5PSIyMDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyNCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzY2NiI+5LyY5YyW54mI5LqL5Y2V5a+85p2lPC90ZXh0Pjwvc3ZnPg=="
+                                 alt="原材料采购与检验" 
+                                 loading="lazy">
                             <div class="image-overlay">优质合金钢材原料仓库</div>
                         </div>
                     </div>
@@ -743,10 +731,17 @@
                             </div>
                         </div>
                         
-                        <div class="step-image" data-image-id="step2">
-                            <div class="image-placeholder">正在加载图片...</div>
-                            <!-- 二车间的图片已经是JPG格式，直接使用 -->
-                            <img src="one.jpg" alt="锻造成型工艺" loading="lazy">
+                        <div class="step-image" data-image-id="2">
+                            <div class="image-placeholder" id="placeholder-2">
+                                <i class="fas fa-spinner fa-spin"></i>
+                                <span>正在加载图片...</span>
+                            </div>
+                            <!-- 步骤2的图片（二车间）- 这个是能加载的 -->
+                            <img data-src="one.jpg" 
+                                 data-fallback1="https://placehold.co/600x400/f0f0f0/666?text=锻造成型工艺" 
+                                 data-fallback2="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjBmMGYwIi8+PHRleHQgeD0iNTAwIiB5PSIyMDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyNCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzY2NiI+55CG5Y+36YGT5a+85p2lPC90ZXh0Pjwvc3ZnPg=="
+                                 alt="锻造成型工艺" 
+                                 loading="lazy">
                             <div class="image-overlay">3000T液压锻压机正在进行半轴锻造</div>
                         </div>
                     </div>
@@ -801,14 +796,18 @@
                             </div>
                         </div>
                         
-                        <div class="step-image" data-image-id="step3">
-                            <div class="image-placeholder">正在加载图片...</div>
-                            <!-- 提供WebP和JPG两种格式 -->
-                            <picture>
-                                <source srcset="two.webp" type="image/webp">
-                                <source srcset="two.jpg" type="image/jpeg">
-                                <img src="two.jpg" alt="精密机加工" loading="lazy">
-                            </picture>
+                        <div class="step-image" data-image-id="3">
+                            <div class="image-placeholder" id="placeholder-3">
+                                <i class="fas fa-spinner fa-spin"></i>
+                                <span>正在加载图片...</span>
+                            </div>
+                            <!-- 步骤3的图片（二车间）- 这个确定能加载 -->
+                            <img data-src="two.webp" 
+                                 data-fallback1="two.jpg"
+                                 data-fallback2="https://placehold.co/600x400/f0f0f0/666?text=精密机加工" 
+                                 data-fallback3="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjBmMGYwIi8+PHRleHQgeD0iNTAwIiB5PSIyMDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyNCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzY2NiI+5aSp5aCC5oqV5ouJ5a+85p2lPC90ZXh0Pjwvc3ZnPg=="
+                                 alt="精密机加工" 
+                                 loading="lazy">
                             <div class="image-overlay">五轴加工中心进行半轴精密加工</div>
                         </div>
                     </div>
@@ -863,14 +862,17 @@
                             </div>
                         </div>
                         
-                        <div class="step-image" data-image-id="step4">
-                            <div class="image-placeholder">正在加载图片...</div>
-                            <!-- 提供WebP和JPG两种格式 -->
-                            <picture>
-                                <source srcset="there.webp" type="image/webp">
-                                <source srcset="there.jpg" type="image/jpeg">
-                                <img src="there.jpg" alt="热处理强化" loading="lazy">
-                            </picture>
+                        <div class="step-image" data-image-id="4">
+                            <div class="image-placeholder" id="placeholder-4">
+                                <i class="fas fa-spinner fa-spin"></i>
+                                <span>正在加载图片...</span>
+                            </div>
+                            <img data-src="there.webp" 
+                                 data-fallback1="there.jpg" 
+                                 data-fallback2="https://placehold.co/600x400/f0f0f0/666?text=热处理强化" 
+                                 data-fallback3="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjBmMGYwIi8+PHRleHQgeD0iNTAwIiB5PSIyMDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyNCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzY2NiI+55So6I2h5o6i5a+85p2lPC90ZXh0Pjwvc3ZnPg=="
+                                 alt="热处理强化" 
+                                 loading="lazy">
                             <div class="image-overlay">热处理车间淬火工艺后效果</div>
                         </div>
                     </div>
@@ -925,14 +927,17 @@
                             </div>
                         </div>
                         
-                        <div class="step-image" data-image-id="step5">
-                            <div class="image-placeholder">正在加载图片...</div>
-                            <!-- 提供WebP和JPG两种格式 -->
-                            <picture>
-                                <source srcset="four.webp" type="image/webp">
-                                <source srcset="four.jpg" type="image/jpeg">
-                                <img src="four.jpg" alt="成品检验与出库" loading="lazy">
-                            </picture>
+                        <div class="step-image" data-image-id="5">
+                            <div class="image-placeholder" id="placeholder-5">
+                                <i class="fas fa-spinner fa-spin"></i>
+                                <span>正在加载图片...</span>
+                            </div>
+                            <img data-src="four.webp" 
+                                 data-fallback1="four.jpg" 
+                                 data-fallback2="https://placehold.co/600x400/f0f0f0/666?text=成品检验与出库" 
+                                 data-fallback3="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjBmMGYwIi8+PHRleHQgeD0iNTAwIiB5PSIyMDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyNCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzY2NiI+5oiQ5a+85p2l5L+u5pS55Y+LLei/nuaOpeWbmzwvdGV4dD48L3N2Zz4="
+                                 alt="成品检验与出库" 
+                                 loading="lazy">
                             <div class="image-overlay">成品半轴检验合格准备发货</div>
                         </div>
                     </div>
@@ -967,139 +972,236 @@
     </div>
     
     <script>
-        // 图片管理器 - 专门解决WebP格式兼容性问题
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('工业半轴溯源页面加载完成 - 图片兼容性优化版');
+        // 图片加载管理器
+        class ImageLoader {
+            constructor() {
+                this.maxRetries = 3;
+                this.retryDelay = 1000;
+                this.images = [];
+                this.init();
+            }
             
-            // 检测浏览器是否支持WebP
-            function checkWebPSupport() {
-                return new Promise((resolve) => {
-                    const img = new Image();
-                    img.onload = function() {
-                        resolve(true);
-                    };
-                    img.onerror = function() {
-                        resolve(false);
-                    };
-                    img.src = 'data:image/webp;base64,UklGRhoAAABXRUJQVlA4TA0AAAAvAAAAEAcQERGIiP4HAA==';
+            init() {
+                console.log('图片加载管理器初始化...');
+                this.collectImages();
+                this.setupObservers();
+                this.precheckImages();
+            }
+            
+            // 收集所有图片
+            collectImages() {
+                const imageElements = document.querySelectorAll('.step-image img');
+                imageElements.forEach((img, index) => {
+                    const container = img.closest('.step-image');
+                    const placeholder = container.querySelector('.image-placeholder');
+                    
+                    this.images.push({
+                        element: img,
+                        container: container,
+                        placeholder: placeholder,
+                        src: img.getAttribute('data-src'),
+                        fallbacks: [
+                            img.getAttribute('data-fallback1'),
+                            img.getAttribute('data-fallback2'),
+                            img.getAttribute('data-fallback3')
+                        ].filter(Boolean),
+                        retryCount: 0,
+                        loaded: false
+                    });
+                });
+                
+                console.log(`找到 ${this.images.length} 张图片`);
+            }
+            
+            // 设置观察者（懒加载）
+            setupObservers() {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const container = entry.target;
+                            const imgData = this.images.find(img => img.container === container);
+                            if (imgData && !imgData.loaded) {
+                                this.loadImage(imgData);
+                            }
+                            observer.unobserve(container);
+                        }
+                    });
+                }, {
+                    rootMargin: '100px',
+                    threshold: 0.1
+                });
+                
+                this.images.forEach(imgData => {
+                    observer.observe(imgData.container);
                 });
             }
             
-            // 初始化图片加载
-            async function initImageLoading() {
-                const webpSupported = await checkWebPSupport();
-                console.log('浏览器WebP支持状态:', webpSupported ? '支持' : '不支持');
+            // 预检查图片
+            precheckImages() {
+                console.log('预检查图片可用性...');
                 
-                const imageContainers = document.querySelectorAll('.step-image');
+                // 特别检查步骤3的图片（two.webp），这个应该是能加载的
+                const step3Image = this.images.find(img => img.src === 'two.webp');
+                if (step3Image) {
+                    console.log('检查步骤3图片 (two.webp)...');
+                    this.testImageUrl(step3Image.src).then(success => {
+                        console.log(`步骤3图片 (two.webp) 可用性: ${success ? '可用' : '不可用'}`);
+                    });
+                }
                 
-                imageContainers.forEach(container => {
-                    const imgElement = container.querySelector('img');
-                    const placeholder = container.querySelector('.image-placeholder');
-                    
-                    if (!imgElement) return;
-                    
-                    // 为不支持WebP的浏览器强制使用JPG
-                    if (!webpSupported) {
-                        const currentSrc = imgElement.src;
-                        if (currentSrc.includes('.webp')) {
-                            // 如果是picture标签，查找其中的img
-                            const pictureImg = container.querySelector('picture img');
-                            if (pictureImg && pictureImg.src.includes('.webp')) {
-                                // 强制使用JPG
-                                const jpgSrc = pictureImg.src.replace('.webp', '.jpg');
-                                console.log('强制使用JPG版本:', jpgSrc);
-                                pictureImg.src = jpgSrc;
-                            } else if (imgElement.src.includes('.webp')) {
-                                // 普通img标签
-                                const jpgSrc = imgElement.src.replace('.webp', '.jpg');
-                                console.log('强制使用JPG版本:', jpgSrc);
-                                imgElement.src = jpgSrc;
-                            }
+                // 立即加载前两张图片（为了更好的用户体验）
+                setTimeout(() => {
+                    const firstTwoImages = this.images.slice(0, 2);
+                    firstTwoImages.forEach(imgData => {
+                        if (!imgData.loaded) {
+                            this.loadImage(imgData);
                         }
+                    });
+                }, 500);
+            }
+            
+            // 测试图片URL是否可用
+            async testImageUrl(url) {
+                return new Promise((resolve) => {
+                    if (!url) {
+                        resolve(false);
+                        return;
                     }
                     
-                    // 设置图片加载事件
-                    imgElement.onload = function() {
-                        console.log('图片加载成功:', this.src);
-                        if (placeholder) {
-                            placeholder.style.display = 'none';
-                        }
-                        this.style.opacity = '1';
-                    };
+                    const img = new Image();
+                    img.onload = () => resolve(true);
+                    img.onerror = () => resolve(false);
+                    img.src = url;
                     
-                    imgElement.onerror = function() {
-                        console.warn('图片加载失败:', this.src);
-                        
-                        // 如果WebP失败，尝试JPG
-                        if (this.src.includes('.webp')) {
-                            const jpgSrc = this.src.replace('.webp', '.jpg');
-                            console.log('尝试加载JPG版本:', jpgSrc);
-                            this.src = jpgSrc;
-                        } else {
-                            // 显示错误状态
-                            if (placeholder) {
-                                placeholder.innerHTML = '<div class="image-error"><i class="fas fa-exclamation-triangle"></i><div>图片加载失败</div></div>';
-                            }
-                        }
-                    };
-                    
-                    // 如果图片已经加载完成，立即隐藏占位符
-                    if (imgElement.complete && imgElement.naturalHeight !== 0) {
-                        if (placeholder) {
-                            placeholder.style.display = 'none';
-                        }
-                        imgElement.style.opacity = '1';
-                    }
+                    // 设置超时
+                    setTimeout(() => resolve(false), 3000);
                 });
+            }
+            
+            // 加载图片
+            async loadImage(imgData) {
+                console.log(`开始加载图片: ${imgData.src}`);
                 
-                // 如果检测到是iPad，执行特殊优化
-                if (window.innerWidth >= 768 && window.innerWidth <= 1024) {
-                    optimizeForiPad();
+                if (imgData.loaded) return;
+                
+                const sources = [imgData.src, ...imgData.fallbacks];
+                let success = false;
+                
+                for (let i = 0; i < sources.length; i++) {
+                    const source = sources[i];
+                    if (!source) continue;
+                    
+                    console.log(`尝试来源 ${i + 1}: ${source.substring(0, 50)}...`);
+                    
+                    try {
+                        success = await this.tryLoadSource(imgData, source);
+                        if (success) {
+                            imgData.loaded = true;
+                            break;
+                        }
+                    } catch (error) {
+                        console.warn(`来源 ${i + 1} 加载失败:`, error);
+                    }
+                    
+                    // 等待一下再尝试下一个来源
+                    if (i < sources.length - 1) {
+                        await this.sleep(500);
+                    }
+                }
+                
+                if (!success) {
+                    this.showFinalFallback(imgData);
                 }
             }
             
-            // iPad特殊优化
-            function optimizeForiPad() {
-                console.log('检测到iPad设备，执行图片加载优化');
-                
-                // 对于iPad，我们更积极地使用JPG格式
-                const webpImages = document.querySelectorAll('img[src$=".webp"]');
-                webpImages.forEach(img => {
-                    // 创建测试图片检查WebP是否真的可用
-                    const testImg = new Image();
-                    testImg.onload = function() {
-                        console.log('iPad WebP测试成功:', img.src);
+            // 尝试加载一个来源
+            tryLoadSource(imgData, src) {
+                return new Promise((resolve) => {
+                    const img = new Image();
+                    img.onload = () => {
+                        console.log(`图片加载成功: ${src.substring(0, 50)}...`);
+                        imgData.element.src = src;
+                        
+                        // 隐藏占位符
+                        if (imgData.placeholder) {
+                            imgData.placeholder.style.opacity = '0';
+                            setTimeout(() => {
+                                imgData.placeholder.style.display = 'none';
+                            }, 300);
+                        }
+                        
+                        resolve(true);
                     };
-                    testImg.onerror = function() {
-                        console.log('iPad WebP测试失败，使用JPG:', img.src);
-                        const jpgSrc = img.src.replace('.webp', '.jpg');
-                        img.src = jpgSrc;
-                    };
-                    testImg.src = img.src;
-                });
-                
-                // 添加图片加载超时检测
-                const imageContainers = document.querySelectorAll('.step-image');
-                imageContainers.forEach(container => {
-                    const img = container.querySelector('img');
-                    const placeholder = container.querySelector('.image-placeholder');
                     
-                    if (img && placeholder) {
-                        // 设置5秒超时
-                        setTimeout(() => {
-                            if (placeholder.style.display !== 'none' && !img.complete) {
-                                console.log('图片加载超时，尝试备用方案:', img.src);
-                                
-                                // 尝试备用图片
-                                if (img.src.includes('.webp')) {
-                                    const jpgSrc = img.src.replace('.webp', '.jpg');
-                                    img.src = jpgSrc;
-                                }
-                            }
-                        }, 5000);
+                    img.onerror = () => {
+                        console.warn(`图片加载失败: ${src.substring(0, 50)}...`);
+                        resolve(false);
+                    };
+                    
+                    img.src = src;
+                    
+                    // 设置超时
+                    setTimeout(() => {
+                        if (!img.complete) {
+                            console.warn(`图片加载超时: ${src.substring(0, 50)}...`);
+                            resolve(false);
+                        }
+                    }, 5000);
+                });
+            }
+            
+            // 显示最终备用方案
+            showFinalFallback(imgData) {
+                console.log('使用最终备用方案');
+                
+                // 创建SVG图片
+                const altText = imgData.element.alt || '图片';
+                const svg = `
+                    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="100%" height="100%" fill="#f5f5f5"/>
+                        <text x="50%" y="45%" text-anchor="middle" font-family="Arial" font-size="16" fill="#666">
+                            ${altText}
+                        </text>
+                        <text x="50%" y="55%" text-anchor="middle" font-family="Arial" font-size="12" fill="#999">
+                            图片暂不可用
+                        </text>
+                    </svg>
+                `;
+                
+                const svgBlob = new Blob([svg], {type: 'image/svg+xml;charset=utf-8'});
+                const svgUrl = URL.createObjectURL(svgBlob);
+                
+                imgData.element.src = svgUrl;
+                imgData.loaded = true;
+                
+                if (imgData.placeholder) {
+                    imgData.placeholder.style.display = 'none';
+                }
+            }
+            
+            // 睡眠函数
+            sleep(ms) {
+                return new Promise(resolve => setTimeout(resolve, ms));
+            }
+            
+            // 强制重试所有失败图片
+            retryFailedImages() {
+                console.log('重试所有失败图片...');
+                this.images.forEach(imgData => {
+                    if (!imgData.loaded) {
+                        imgData.retryCount = 0;
+                        this.loadImage(imgData);
                     }
                 });
             }
+        }
+        
+        // 添加简单的交互效果
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('工业半轴溯源页面加载完成 - 智能图片加载版');
+            
+            // 初始化图片加载器
+            const imageLoader = new ImageLoader();
             
             // 添加点击反馈
             const stepContents = document.querySelectorAll('.step-content');
@@ -1185,13 +1287,10 @@
                 }, false);
             }
             
-            // 页面加载完成后初始化图片
+            // 页面加载完成后的优化
             window.addEventListener('load', function() {
                 document.body.classList.add('loaded');
                 console.log('页面所有资源已加载完成');
-                
-                // 初始化图片加载
-                initImageLoading();
                 
                 // iPad全屏适配
                 if (window.innerWidth >= 768 && window.innerWidth <= 1024) {
@@ -1209,34 +1308,39 @@
                     }
                 }
                 
-                // 延迟检查图片加载状态
+                // 添加重试按钮（如果图片加载失败）
                 setTimeout(() => {
-                    const failedImages = document.querySelectorAll('.image-error');
+                    const failedImages = document.querySelectorAll('.step-image img[src*="svg"]');
                     if (failedImages.length > 0) {
-                        console.log('有图片加载失败，尝试最终解决方案');
+                        console.log(`发现 ${failedImages.length} 张图片使用备用方案`);
                         
-                        // 最终解决方案：如果还有图片失败，使用base64占位符
-                        const allImages = document.querySelectorAll('.step-image img');
-                        allImages.forEach(img => {
-                            if (!img.complete || img.naturalHeight === 0) {
-                                console.log('创建备用图片:', img.alt);
-                                // 创建一个简单的SVG图片作为最终备用
-                                const svgData = `
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="400" height="250" viewBox="0 0 400 250">
-                                        <rect width="400" height="250" fill="#f0f0f0"/>
-                                        <text x="200" y="125" font-family="Arial" font-size="16" text-anchor="middle" fill="#666">
-                                            ${img.alt}
-                                        </text>
-                                        <text x="200" y="150" font-family="Arial" font-size="12" text-anchor="middle" fill="#999">
-                                            图片加载中...
-                                        </text>
-                                    </svg>
-                                `;
-                                img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgData);
+                        // 可以在这里添加一个重试按钮
+                        const retryBtn = document.createElement('button');
+                        retryBtn.innerHTML = '<i class="fas fa-redo"></i> 重试图片';
+                        retryBtn.style.cssText = `
+                            position: fixed;
+                            bottom: 20px;
+                            right: 20px;
+                            padding: 10px 15px;
+                            background: #3498db;
+                            color: white;
+                            border: none;
+                            border-radius: 5px;
+                            cursor: pointer;
+                            z-index: 1000;
+                            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+                        `;
+                        retryBtn.onclick = () => imageLoader.retryFailedImages();
+                        document.body.appendChild(retryBtn);
+                        
+                        // 10秒后自动移除
+                        setTimeout(() => {
+                            if (retryBtn.parentNode) {
+                                retryBtn.parentNode.removeChild(retryBtn);
                             }
-                        });
+                        }, 10000);
                     }
-                }, 10000); // 10秒后检查
+                }, 8000);
             });
             
             // iPad滚动优化
